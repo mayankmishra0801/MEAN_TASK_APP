@@ -19,7 +19,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
     // Clean up after all tests
-    await User.deleteMany(); // Make sure User model is imported correctly
+    await User.deleteMany({}); // Make sure User model is imported correctly
     await mongoose.disconnect();
 });
 
