@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
-const connectDB = (MONGO_URI) =>{
-    try{
-        mongoose.connect(MONGO_URI).then(()=>{
-            console.log("MongoDB Connected")
+require('dotenv').config();
 
-        }).catch(err => {
-            console.log(err)
-        })
+const connectDB = () =>{
+    const MONGO_URI = process.env.MONGO_URI;  
 
+    if (!MONGO_URI) {
+        console.error("MONGO_URI is not defined in the .env file");
+        return;
     }
-
-    catch(error){
-        console.log(error)
-    }
+    mongoose.connect(MONGO_URI).then(() => {
+        console.log("MongoDB Connected");
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 module.exports = connectDB
